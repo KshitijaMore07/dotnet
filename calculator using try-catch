@@ -1,0 +1,30 @@
+using System;
+
+class Calculator
+{
+    static void Main()
+    {
+        try
+        {
+            Console.WriteLine("Enter first number:");
+            int a = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Enter second number:");
+            int b = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Division = " + (a / b));
+        }
+        catch (DivideByZeroException)
+        {
+            Console.WriteLine("Cannot divide by zero");
+        }
+        catch (FormatException)
+        {
+            Console.WriteLine("Invalid Input");
+        }
+        finally
+        {
+            Console.WriteLine("End of Program");
+        }
+    }
+}
