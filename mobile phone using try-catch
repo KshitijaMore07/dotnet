@@ -1,0 +1,25 @@
+using System;
+
+class Mobile
+{
+    static void Main()
+    {
+        try
+        {
+            Console.WriteLine("Enter Price:");
+            double price = Convert.ToDouble(Console.ReadLine());
+
+            Console.WriteLine("Enter Budget:");
+            double budget = Convert.ToDouble(Console.ReadLine());
+
+            if (price <= budget)
+                Console.WriteLine("Affordable");
+            else
+                Console.WriteLine("Not Affordable");
+        }
+        catch (Exception)
+        {
+            Console.WriteLine("Invalid Input");
+        }
+    }
+}
