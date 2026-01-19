@@ -1,0 +1,20 @@
+using System;
+
+class Employee
+{
+    static void Main()
+    {
+        try
+        {
+            Console.WriteLine("Enter Salary:");
+            double salary = Convert.ToDouble(Console.ReadLine());
+
+            salary += salary * 0.1;
+            Console.WriteLine("New Salary = " + salary);
+        }
+        catch (FormatException)
+        {
+            Console.WriteLine("Invalid Salary Input");
+        }
+    }
+}
