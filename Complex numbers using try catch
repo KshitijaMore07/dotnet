@@ -1,0 +1,22 @@
+using System;
+
+class Complex
+{
+    static void Main()
+    {
+        try
+        {
+            Console.WriteLine("Enter real part:");
+            int r1 = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Enter imaginary part:");
+            int i1 = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Complex Number = " + r1 + " + " + i1 + "i");
+        }
+        catch (Exception)
+        {
+            Console.WriteLine("Invalid Input");
+        }
+    }
+}
