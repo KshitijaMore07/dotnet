@@ -1,0 +1,22 @@
+using System;
+
+class Polygon
+{
+    static void Main()
+    {
+        try
+        {
+            Console.WriteLine("Enter sides:");
+            int s = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Enter length:");
+            double l = Convert.ToDouble(Console.ReadLine());
+
+            Console.WriteLine("Perimeter = " + (s * l));
+        }
+        catch (Exception)
+        {
+            Console.WriteLine("Invalid Input");
+        }
+    }
+}
