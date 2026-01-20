@@ -1,0 +1,29 @@
+using System;
+
+class Ticket
+{
+    int flightNo;
+    string from, to, seat;
+
+    public Ticket(int f, string d, string a, string s)
+    {
+        flightNo = f;
+        from = d;
+        to = a;
+        seat = s;
+    }
+
+    public void Display()
+    {
+        Console.WriteLine($"{flightNo} {from} {to} Seat:{seat}");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Ticket t = new Ticket(101, "Pune", "Delhi", "12F");
+        t.Display();
+    }
+}
