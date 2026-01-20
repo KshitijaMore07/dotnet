@@ -1,0 +1,26 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        int n, temp, reverse = 0, digit;
+
+        Console.WriteLine("Enter a number:");
+        n = Convert.ToInt32(Console.ReadLine());
+
+        temp = n;
+
+        while (n > 0)
+        {
+            digit = n % 10;
+            reverse = reverse * 10 + digit;
+            n = n / 10;
+        }
+
+        if (reverse == temp)
+            Console.WriteLine("Palindrome Number");
+        else
+            Console.WriteLine("Not a Palindrome Number");
+    }
+}
