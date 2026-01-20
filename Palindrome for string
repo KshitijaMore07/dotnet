@@ -1,0 +1,8 @@
+string s = Console.ReadLine();
+char[] arr = s.ToCharArray();
+Array.Reverse(arr);
+
+if (s == new string(arr))
+    Console.WriteLine("Palindrome String");
+else
+    Console.WriteLine("Not a Palindrome String");
