@@ -1,0 +1,28 @@
+using System;
+
+class Planet
+{
+    string name;
+    double distance, gravity;
+
+    public Planet(string n, double d, double g)
+    {
+        name = n;
+        distance = d;
+        gravity = g;
+    }
+
+    public void Display()
+    {
+        Console.WriteLine($"{name} {distance} {gravity}");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Planet p = new Planet("Mars", 227.9, 0.38);
+        p.Display();
+    }
+}
