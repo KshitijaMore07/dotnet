@@ -1,0 +1,21 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        int n, reverse = 0, digit;
+
+        Console.WriteLine("Enter a number:");
+        n = Convert.ToInt32(Console.ReadLine());
+
+        while (n > 0)
+        {
+            digit = n % 10;
+            reverse = reverse * 10 + digit;
+            n = n / 10;
+        }
+
+        Console.WriteLine("Reverse number is: " + reverse);
+    }
+}
