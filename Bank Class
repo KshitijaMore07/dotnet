@@ -1,0 +1,41 @@
+using System;
+
+class Bank
+{
+    double balance;
+
+    public Bank(double bal)
+    {
+        balance = bal;
+    }
+
+    public void Credit(double amt)
+    {
+        if (amt > 0)
+            balance += amt;
+    }
+
+    public void Debit(double amt)
+    {
+        if (amt > 0 && amt <= balance)
+            balance -= amt;
+        else
+            Console.WriteLine("Insufficient Balance");
+    }
+
+    public void Display()
+    {
+        Console.WriteLine("Balance = " + balance);
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Bank b = new Bank(5000);
+        b.Credit(2000);
+        b.Debit(1500);
+        b.Display();
+    }
+}
