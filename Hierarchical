@@ -1,0 +1,52 @@
+using System;
+
+class Account
+{
+    public int accNo;
+    public string name;
+    public double balance;
+
+    public void Deposit(double amt)
+    {
+        balance += amt;
+    }
+
+    public void Withdraw(double amt)
+    {
+        balance -= amt;
+    }
+}
+
+class SavingAccount : Account
+{
+    public void Interest()
+    {
+        Console.WriteLine("Interest calculated");
+    }
+}
+
+class CurrentAccount : Account
+{
+    public double overdraftLimit = 5000;
+
+    public void ShowLimit()
+    {
+        Console.WriteLine("Overdraft Limit: " + overdraftLimit);
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        SavingAccount s = new SavingAccount();
+        s.Deposit(1000);
+        s.Interest();
+        Console.WriteLine("Saving Balance: " + s.balance);
+
+        CurrentAccount c = new CurrentAccount();
+        c.Deposit(2000);
+        c.ShowLimit();
+        Console.WriteLine("Current Balance: " + c.balance);
+    }
+}
