@@ -1,0 +1,49 @@
+using System;
+
+class LibraryItem
+{
+    public string title;
+
+    public virtual void Borrow()
+    {
+        Console.WriteLine("Item borrowed");
+    }
+}
+
+class Book : LibraryItem
+{
+    public override void Borrow()
+    {
+        Console.WriteLine("Book borrowed for 14 days");
+    }
+}
+
+class Magazine : LibraryItem
+{
+    public override void Borrow()
+    {
+        Console.WriteLine("Magazine borrowed for 7 days");
+    }
+}
+
+class DVD : LibraryItem
+{
+    public override void Borrow()
+    {
+        Console.WriteLine("DVD borrowed for 2 days");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        LibraryItem b = new Book();
+        LibraryItem m = new Magazine();
+        LibraryItem d = new DVD();
+
+        b.Borrow();
+        m.Borrow();
+        d.Borrow();
+    }
+}
