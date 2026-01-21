@@ -1,0 +1,39 @@
+using System;
+
+class Student
+{
+    public int rollNo;
+    public string name;
+
+    public virtual void Display()
+    {
+        Console.WriteLine("Roll No: " + rollNo);
+        Console.WriteLine("Name: " + name);
+    }
+}
+
+class PGStudent : Student
+{
+    public string branch;
+    public int semester;
+
+    public override void Display()
+    {
+        base.Display();
+        Console.WriteLine("Branch: " + branch);
+        Console.WriteLine("Semester: " + semester);
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        PGStudent p = new PGStudent();
+        p.rollNo = 1;
+        p.name = "Kshitija";
+        p.branch = "Computer Science";
+        p.semester = 2;
+        p.Display();
+    }
+}
