@@ -1,0 +1,36 @@
+using System;
+
+class LivingThing
+{
+    public void Breathe()
+    {
+        Console.WriteLine("Living thing is breathing");
+    }
+}
+
+class Animal : LivingThing
+{
+    public void Walk()
+    {
+        Console.WriteLine("Animal is walking");
+    }
+}
+
+class Bird : Animal
+{
+    public void Fly()
+    {
+        Console.WriteLine("Bird is flying");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Bird b = new Bird();
+        b.Breathe();
+        b.Walk();
+        b.Fly();
+    }
+}
