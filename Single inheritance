@@ -1,0 +1,34 @@
+using System;
+
+class Device
+{
+    public string company;
+
+    public void Input()
+    {
+        Console.Write("Enter Company: ");
+        company = Console.ReadLine();
+    }
+}
+
+class Mobile : Device
+{
+    public string os;
+
+    public void Show()
+    {
+        Console.WriteLine("Company: " + company);
+        Console.WriteLine("OS: " + os);
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Mobile m = new Mobile();
+        m.Input();
+        m.os = "Android";
+        m.Show();
+    }
+}
