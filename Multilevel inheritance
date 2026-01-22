@@ -1,0 +1,36 @@
+using System;
+
+class Machine
+{
+    public void Start()
+    {
+        Console.WriteLine("Machine Started");
+    }
+}
+
+class Printer : Machine
+{
+    public void Print()
+    {
+        Console.WriteLine("Printing Document");
+    }
+}
+
+class LaserPrinter : Printer
+{
+    public void Scan()
+    {
+        Console.WriteLine("Scanning Document");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        LaserPrinter lp = new LaserPrinter();
+        lp.Start();
+        lp.Print();
+        lp.Scan();
+    }
+}
