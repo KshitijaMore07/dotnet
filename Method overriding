@@ -1,0 +1,26 @@
+using System;
+
+class Employee
+{
+    public virtual void Salary()
+    {
+        Console.WriteLine("Employee Salary");
+    }
+}
+
+class Manager : Employee
+{
+    public override void Salary()
+    {
+        Console.WriteLine("Manager Salary with bonus");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Employee e = new Manager();
+        e.Salary();
+    }
+}
