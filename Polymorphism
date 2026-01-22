@@ -1,0 +1,36 @@
+using System;
+
+abstract class Payment
+{
+    public abstract void Pay();
+}
+
+class UPI : Payment
+{
+    public override void Pay()
+    {
+        Console.WriteLine("Payment done using UPI");
+    }
+}
+
+class Card : Payment
+{
+    public override void Pay()
+    {
+        Console.WriteLine("Payment done using Card");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Payment p;
+
+        p = new UPI();
+        p.Pay();
+
+        p = new Card();
+        p.Pay();
+    }
+}
