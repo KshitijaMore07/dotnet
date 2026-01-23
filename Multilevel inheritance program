@@ -1,0 +1,36 @@
+using System;
+
+class Account
+{
+    public void CreateAccount()
+    {
+        Console.WriteLine("Account Created");
+    }
+}
+
+class User : Account
+{
+    public void Login()
+    {
+        Console.WriteLine("User Logged In");
+    }
+}
+
+class PremiumUser : User
+{
+    public void AccessPremium()
+    {
+        Console.WriteLine("Premium Access Granted");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        PremiumUser p = new PremiumUser();
+        p.CreateAccount();
+        p.Login();
+        p.AccessPremium();
+    }
+}
