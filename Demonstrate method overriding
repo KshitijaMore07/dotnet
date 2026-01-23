@@ -1,0 +1,26 @@
+using System;
+
+class Exam
+{
+    public virtual void Result()
+    {
+        Console.WriteLine("Exam result declared");
+    }
+}
+
+class PracticalExam : Exam
+{
+    public override void Result()
+    {
+        Console.WriteLine("Practical exam result declared");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Exam e = new PracticalExam();
+        e.Result();
+    }
+}
