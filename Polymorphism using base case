@@ -1,0 +1,26 @@
+using System;
+
+class Game
+{
+    public virtual void Play()
+    {
+        Console.WriteLine("Playing Game");
+    }
+}
+
+class Cricket : Game
+{
+    public override void Play()
+    {
+        Console.WriteLine("Playing Cricket");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Game g = new Cricket();
+        g.Play();
+    }
+}
