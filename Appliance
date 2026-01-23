@@ -1,0 +1,27 @@
+using System;
+
+class Appliance
+{
+    public void On()
+    {
+        Console.WriteLine("Appliance is ON");
+    }
+}
+
+class Fan : Appliance
+{
+    public void Rotate()
+    {
+        Console.WriteLine("Fan is rotating");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Fan f = new Fan();
+        f.On();
+        f.Rotate();
+    }
+}
