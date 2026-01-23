@@ -1,0 +1,36 @@
+using System;
+
+abstract class Notification
+{
+    public abstract void Send();
+}
+
+class SMS : Notification
+{
+    public override void Send()
+    {
+        Console.WriteLine("SMS Sent");
+    }
+}
+
+class Email : Notification
+{
+    public override void Send()
+    {
+        Console.WriteLine("Email Sent");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Notification n;
+
+        n = new SMS();
+        n.Send();
+
+        n = new Email();
+        n.Send();
+    }
+}
