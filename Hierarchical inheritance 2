@@ -1,0 +1,39 @@
+using System;
+
+class Vehicle
+{
+    public void Start()
+    {
+        Console.WriteLine("Vehicle Started");
+    }
+}
+
+class Bike : Vehicle
+{
+    public void Ride()
+    {
+        Console.WriteLine("Bike is running");
+    }
+}
+
+class Truck : Vehicle
+{
+    public void Load()
+    {
+        Console.WriteLine("Truck carrying load");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Bike b = new Bike();
+        b.Start();
+        b.Ride();
+
+        Truck t = new Truck();
+        t.Start();
+        t.Load();
+    }
+}
