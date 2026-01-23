@@ -1,0 +1,11 @@
+using System;
+
+class Country
+{
+    public void CountryName()
+    {
+        Console.WriteLine("Country: India");
+    }
+}
+
+class State : Country
