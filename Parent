@@ -1,0 +1,25 @@
+using System;
+
+class Parent
+{
+    public Parent()
+    {
+        Console.WriteLine("Parent Constructor");
+    }
+}
+
+class Child : Parent
+{
+    public Child()
+    {
+        Console.WriteLine("Child Constructor");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Child c = new Child();
+    }
+}
