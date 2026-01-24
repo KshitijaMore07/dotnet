@@ -1,0 +1,39 @@
+using System;
+
+class Animal
+{
+    public void Eat()
+    {
+        Console.WriteLine("Animal eats food");
+    }
+}
+
+class Dog : Animal
+{
+    public void Bark()
+    {
+        Console.WriteLine("Dog barks");
+    }
+}
+
+class Cat : Animal
+{
+    public void Meow()
+    {
+        Console.WriteLine("Cat meows");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Dog d = new Dog();
+        d.Eat();
+        d.Bark();
+
+        Cat c = new Cat();
+        c.Eat();
+        c.Meow();
+    }
+}
