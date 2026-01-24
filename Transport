@@ -1,0 +1,36 @@
+using System;
+
+abstract class Transport
+{
+    public abstract void Move();
+}
+
+class Bus : Transport
+{
+    public override void Move()
+    {
+        Console.WriteLine("Bus moves on road");
+    }
+}
+
+class Train : Transport
+{
+    public override void Move()
+    {
+        Console.WriteLine("Train moves on track");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Transport t;
+
+        t = new Bus();
+        t.Move();
+
+        t = new Train();
+        t.Move();
+    }
+}
