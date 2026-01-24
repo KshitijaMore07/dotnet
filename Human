@@ -1,0 +1,27 @@
+using System;
+
+class Human
+{
+    public void Speak()
+    {
+        Console.WriteLine("Human can speak");
+    }
+}
+
+class Child : Human
+{
+    public void Play()
+    {
+        Console.WriteLine("Child is playing");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Child c = new Child();
+        c.Speak();
+        c.Play();
+    }
+}
