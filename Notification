@@ -1,0 +1,26 @@
+using System;
+
+class Notification
+{
+    public virtual void Send()
+    {
+        Console.WriteLine("Sending Notification");
+    }
+}
+
+class WhatsApp : Notification
+{
+    public override void Send()
+    {
+        Console.WriteLine("Sending WhatsApp Message");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Notification n = new WhatsApp();
+        n.Send();
+    }
+}
