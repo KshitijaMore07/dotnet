@@ -1,0 +1,36 @@
+using System;
+
+class School
+{
+    public void SchoolName()
+    {
+        Console.WriteLine("School: ABC School");
+    }
+}
+
+class ClassRoom : School
+{
+    public void ClassName()
+    {
+        Console.WriteLine("Class: FY BSc");
+    }
+}
+
+class Student : ClassRoom
+{
+    public void StudentName()
+    {
+        Console.WriteLine("Student: Kshitija");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Student s = new Student();
+        s.SchoolName();
+        s.ClassName();
+        s.StudentName();
+    }
+}
