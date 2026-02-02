@@ -1,0 +1,16 @@
+using System;
+
+class Program
+{
+    static void Calculate(int a, int b, Func<int, int, int> operation)
+    {
+        Console.WriteLine("Result: " + operation(a, b));
+    }
+
+    static void Main()
+    {
+        Calculate(10, 5, (x, y) => x + y);
+        Calculate(10, 5, (x, y) => x - y);
+        Calculate(10, 5, (x, y) => x * y);
+    }
+}
