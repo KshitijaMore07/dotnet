@@ -1,0 +1,31 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        // a. Accept string and find its length
+        Func<string, int> findLength = s => s.Length;
+        Console.WriteLine("Length: " + findLength("Hello"));
+
+        // b. Convert string to uppercase
+        Func<string, string> toUpper = s => s.ToUpper();
+        Console.WriteLine("Uppercase: " + toUpper("kshitija"));
+
+        // c. Add two integers
+        Func<int, int, int> add = (a, b) => a + b;
+        Console.WriteLine("Addition: " + add(10, 20));
+
+        // d. Filter even numbers from a list
+        List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6 };
+        var evenNumbers = numbers.Where(n => n % 2 == 0);
+
+        Console.WriteLine("Even Numbers:");
+        foreach (int n in evenNumbers)
+        {
+            Console.WriteLine(n);
+        }
+    }
+}
