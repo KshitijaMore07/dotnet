@@ -1,0 +1,30 @@
+using System;
+
+delegate void NotificationHandler(string message);
+
+class Logger
+{
+    public void LogToConsole(string message)
+    {
+        Console.WriteLine("Console Log: " + message);
+    }
+
+    public void LogToFile(string message)
+    {
+        Console.WriteLine("File Log: " + message);
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Logger logger = new Logger();
+
+        NotificationHandler notification;
+        notification = logger.LogToConsole;
+        notification += logger.LogToFile;
+
+        notification("System Started");
+    }
+}
