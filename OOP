@@ -1,0 +1,23 @@
+using System;
+
+class Student
+{
+    public int Id;
+    public string Name;
+
+    public void Display()
+    {
+        Console.WriteLine(Id + " " + Name);
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Student s = new Student();
+        s.Id = 1;
+        s.Name = "Kshitija";
+        s.Display();
+    }
+}
