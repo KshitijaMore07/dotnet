@@ -1,0 +1,2 @@
+Func<int, int, int> max = (a, b) => a > b ? a : b;
+Console.WriteLine(max(10, 20));
