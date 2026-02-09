@@ -1,0 +1,2 @@
+Func<int, bool> isPositive = n => n > 0;
+Console.WriteLine(isPositive(10));
