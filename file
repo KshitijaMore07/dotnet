@@ -1,0 +1,22 @@
+using System;
+using System.IO;
+
+class CountProgram
+{
+    static void Main()
+    {
+        Console.Write("Enter file path: ");
+        string path = Console.ReadLine();
+
+        string text = File.ReadAllText(path);
+
+        int characters = text.Length;
+        int lines = File.ReadAllLines(path).Length;
+        int words = text.Split(new char[] { ' ', '\n', '\t' },
+                                StringSplitOptions.RemoveEmptyEntries).Length;
+
+        Console.WriteLine("Lines: " + lines);
+        Console.WriteLine("Words: " + words);
+        Console.WriteLine("Characters: " + characters);
+    }
+}
