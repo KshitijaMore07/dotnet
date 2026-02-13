@@ -1,0 +1,26 @@
+using System;
+using System.IO;
+
+class EncryptDecrypt
+{
+    static void Main()
+    {
+        string text = File.ReadAllText("data.txt");
+        string encrypted = "";
+        string decrypted = "";
+
+        // Encrypt
+        foreach (char c in text)
+            encrypted += (char)(c + 1);
+
+        File.WriteAllText("encrypt.txt", encrypted);
+
+        // Decrypt
+        foreach (char c in encrypted)
+            decrypted += (char)(c - 1);
+
+        File.WriteAllText("decrypt.txt", decrypted);
+
+        Console.WriteLine("Encryption and Decryption done!");
+    }
+}
