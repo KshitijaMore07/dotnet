@@ -1,0 +1,97 @@
+using System;
+using System.IO;
+
+class StudentRecord
+{
+    static string filePath = "records.txt";
+
+    static void AddStudent()
+    {
+        Console.Write("Enter ID: ");
+        int id = int.Parse(Console.ReadLine());
+
+        Console.Write("Enter Name: ");
+        string name = Console.ReadLine();
+
+        Console.Write("Enter Marks: ");
+        float marks = float.Parse(Console.ReadLine());
+
+        string record = id + "," + name + "," + marks;
+        File.AppendAllText(filePath, record + Environment.NewLine);
+
+        Console.WriteLine("Student added successfully!");
+    }
+
+    static void ViewStudents()
+    {
+        if (!File.Exists(filePath))
+        {
+            Console.WriteLine("No records found!");
+            return;
+        }
+
+        string[] records = File.ReadAllLines(filePath);
+        foreach (string r in records)
+        {
+            string[] data = r.Split(',');
+            Console.WriteLine($"ID: {data[0]}, Name: {data[1]}, Marks: {data[2]}");
+        }
+    }
+
+    static void SearchStudent()
+    {
+        Console.Write("Enter Student ID to search: ");
+        string searchId = Console.ReadLine();
+        bool found = false;
+
+        foreach (string r in File.ReadAllLines(filePath))
+        {
+            string[] data = r.Split(',');
+            if (data[0] == searchId)
+            {
+                Console.WriteLine($"ID: {data[0]}, Name: {data[1]}, Marks: {data[2]}");
+                found = true;
+                break;
+            }
+        }
+
+        if (!found)
+            Console.WriteLine("Student not found!");
+    }
+
+    static void DeleteStudent()
+    {
+        Console.Write("Enter ID to delete: ");
+        string deleteId = Console.ReadLine();
+
+        var lines = File.ReadAllLines(filePath);
+        using (StreamWriter sw = new StreamWriter(filePath))
+        {
+            foreach (string line in lines)
+            {
+                if (!line.StartsWith(deleteId + ","))
+                    sw.WriteLine(line);
+            }
+        }
+        Console.WriteLine("Record deleted (if existed).");
+    }
+
+    static void Main()
+    {
+        int choice;
+        do
+        {
+            Console.WriteLine("\n1.Add Student\n2.View Students\n3.Search Student\n4.Delete Student\n5.Exit");
+            Console.Write("Enter choice: ");
+            choice = int.Parse(Console.ReadLine());
+
+            switch (choice)
+            {
+                case 1: AddStudent(); break;
+                case 2: ViewStudents(); break;
+                case 3: SearchStudent(); break;
+                case 4: DeleteStudent(); break;
+            }
+        } while (choice != 5);
+    }
+}
