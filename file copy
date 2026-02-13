@@ -1,0 +1,25 @@
+using System;
+using System.IO;
+
+class FileProgram
+{
+    static void Main()
+    {
+        Console.Write("Enter source file path: ");
+        string sourcePath = Console.ReadLine();
+
+        Console.Write("Enter destination file path: ");
+        string destPath = Console.ReadLine();
+
+        // Copy file
+        File.Copy(sourcePath, destPath, true);
+
+        // Display source file
+        Console.WriteLine("\nContents of source file:");
+        Console.WriteLine(File.ReadAllText(sourcePath));
+
+        // Display destination file
+        Console.WriteLine("\nContents of destination file:");
+        Console.WriteLine(File.ReadAllText(destPath));
+    }
+}
