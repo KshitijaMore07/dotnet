@@ -1,0 +1,55 @@
+using System;
+using System.IO;
+
+class EmployeeRecord
+{
+    static string filePath = "employee.txt";
+
+    static void Main()
+    {
+        int choice;
+        do
+        {
+            Console.WriteLine("\n1.Add Employee\n2.Search Employee\n3.Exit");
+            Console.Write("Enter choice: ");
+            choice = int.Parse(Console.ReadLine());
+
+            if (choice == 1)
+            {
+                Console.Write("Enter ID: ");
+                string id = Console.ReadLine();
+
+                Console.Write("Enter Name: ");
+                string name = Console.ReadLine();
+
+                Console.Write("Enter Salary: ");
+                string salary = Console.ReadLine();
+
+                File.AppendAllText(filePath, id + "," + name + "," + salary + Environment.NewLine);
+                Console.WriteLine("Employee added!");
+            }
+
+            else if (choice == 2)
+            {
+                Console.Write("Enter ID to search: ");
+                string searchId = Console.ReadLine();
+                bool found = false;
+
+                foreach (string line in File.ReadAllLines(filePath))
+                {
+                    string[] data = line.Split(',');
+                    if (data[0] == searchId)
+                    {
+                        Console.WriteLine($"ID: {data[0]}, Name: {data[1]}, Salary: {data[2]}");
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found)
+                    Console.WriteLine("Employee not found!");
+            }
+
+        } while (choice != 3);
+    }
+}
