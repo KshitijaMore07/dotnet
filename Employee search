@@ -1,0 +1,28 @@
+using System;
+using System.IO;
+
+class Employee
+{
+    static void Main()
+    {
+        Console.Write("Enter Employee ID to search: ");
+        string id = Console.ReadLine();
+        bool found = false;
+
+        if (File.Exists("emp.txt"))
+        {
+            foreach (string line in File.ReadAllLines("emp.txt"))
+            {
+                string[] data = line.Split('|');
+                if (data[0] == id)
+                {
+                    Console.WriteLine("Record Found: " + line);
+                    found = true;
+                }
+            }
+        }
+
+        if (!found)
+            Console.WriteLine("Employee not found!");
+    }
+}
