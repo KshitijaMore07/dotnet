@@ -1,0 +1,41 @@
+using System;
+using System.IO;
+
+class Product
+{
+    static void Main()
+    {
+        int choice;
+        do
+        {
+            Console.WriteLine("\n1.Add Product\n2.View Products\n3.Exit");
+            choice = int.Parse(Console.ReadLine());
+
+            if (choice == 1)
+            {
+                Console.Write("Enter ID: ");
+                string id = Console.ReadLine();
+
+                Console.Write("Enter Name: ");
+                string name = Console.ReadLine();
+
+                Console.Write("Enter Price: ");
+                string price = Console.ReadLine();
+
+                File.AppendAllText("product.txt", id + "|" + name + "|" + price + Environment.NewLine);
+            }
+
+            else if (choice == 2)
+            {
+                if (File.Exists("product.txt"))
+                {
+                    foreach (string line in File.ReadAllLines("product.txt"))
+                        Console.WriteLine(line);
+                }
+                else
+                    Console.WriteLine("No records found!");
+            }
+
+        } while (choice != 3);
+    }
+}
