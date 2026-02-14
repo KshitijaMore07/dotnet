@@ -1,0 +1,18 @@
+using System;
+using System.IO;
+
+class Encrypt
+{
+    static void Main()
+    {
+        string text = File.ReadAllText("data.txt");
+        string result = "";
+
+        foreach (char c in text)
+            result += (char)(c + 1);
+
+        File.WriteAllText("encrypted.txt", result);
+
+        Console.WriteLine("File Encrypted!");
+    }
+}
