@@ -1,0 +1,51 @@
+using System;
+using System.Collections.Generic;
+
+class Book
+{
+    public string Title { get; set; }
+    public string Author { get; set; }
+    public int Year { get; set; }
+
+    public Book(string title, string author, int year)
+    {
+        Title = title; Author = author; Year = year;
+    }
+
+    public override string ToString() =>
+        $"Title: {Title}, Author: {Author}, Year: {Year}";
+}
+
+class Library
+{
+    private List<Book> books = new List<Book>();
+
+    public void AddBook(Book b) { books.Add(b); Console.WriteLine("Book added."); }
+
+    public void RemoveBook(string title)
+    {
+        Book found = books.Find(b => b.Title.Equals(title, StringComparison.OrdinalIgnoreCase));
+        if (found != null) { books.Remove(found); Console.WriteLine("Book removed."); }
+        else Console.WriteLine("Book not found.");
+    }
+
+    public void DisplayAll()
+    {
+        if (books.Count == 0) { Console.WriteLine("No books in library."); return; }
+        Console.WriteLine("\n--- Book List ---");
+        foreach (var b in books) Console.WriteLine(b);
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Library lib = new Library();
+        lib.AddBook(new Book("C# in Depth", "Jon Skeet", 2019));
+        lib.AddBook(new Book("Clean Code", "Robert Martin", 2008));
+        lib.DisplayAll();
+        lib.RemoveBook("Clean Code");
+        lib.DisplayAll();
+    }
+}
