@@ -1,0 +1,42 @@
+using System;
+
+class Calculator
+{
+    public double Add(double a, double b) => a + b;
+    public double Subtract(double a, double b) => a - b;
+    public double Multiply(double a, double b) => a * b;
+
+    public double Divide(double a, double b)
+    {
+        if (b == 0) throw new DivideByZeroException("Cannot divide by zero.");
+        return a / b;
+    }
+
+    public double Modulus(double a, double b)
+    {
+        if (b == 0) throw new DivideByZeroException("Cannot mod by zero.");
+        return a % b;
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Calculator calc = new Calculator();
+        try
+        {
+            Console.WriteLine("Enter two numbers:");
+            double a = double.Parse(Console.ReadLine());
+            double b = double.Parse(Console.ReadLine());
+
+            Console.WriteLine($"Add: {calc.Add(a, b)}");
+            Console.WriteLine($"Subtract: {calc.Subtract(a, b)}");
+            Console.WriteLine($"Multiply: {calc.Multiply(a, b)}");
+            Console.WriteLine($"Divide: {calc.Divide(a, b)}");
+            Console.WriteLine($"Modulus: {calc.Modulus(a, b)}");
+        }
+        catch (FormatException) { Console.WriteLine("Invalid input. Enter numbers only."); }
+        catch (DivideByZeroException ex) { Console.WriteLine(ex.Message); }
+    }
+}
