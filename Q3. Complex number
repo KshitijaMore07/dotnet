@@ -1,0 +1,45 @@
+using System;
+
+class ComplexNumber
+{
+    public double Real      { get; set; }
+    public double Imaginary { get; set; }
+
+    public ComplexNumber(double real, double imaginary)
+    { Real = real; Imaginary = imaginary; }
+
+    public ComplexNumber Add(ComplexNumber other) =>
+        new ComplexNumber(Real + other.Real, Imaginary + other.Imaginary);
+
+    public ComplexNumber Subtract(ComplexNumber other) =>
+        new ComplexNumber(Real - other.Real, Imaginary - other.Imaginary);
+
+    // (a+bi)(c+di) = (ac - bd) + (ad + bc)i
+    public ComplexNumber Multiply(ComplexNumber other) =>
+        new ComplexNumber(
+            Real * other.Real - Imaginary * other.Imaginary,
+            Real * other.Imaginary + Imaginary * other.Real
+        );
+
+    public void Display(string label = "")
+    {
+        string sign = Imaginary >= 0 ? "+" : "-";
+        Console.WriteLine($"{label}{Real} {sign} {Math.Abs(Imaginary)}i");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        ComplexNumber c1 = new ComplexNumber(3, 4);
+        ComplexNumber c2 = new ComplexNumber(1, -2);
+
+        c1.Display("C1 = ");
+        c2.Display("C2 = ");
+
+        c1.Add(c2)     .Display("\nC1 + C2 = ");
+        c1.Subtract(c2).Display("C1 - C2 = ");
+        c1.Multiply(c2).Display("C1 * C2 = ");
+    }
+}
