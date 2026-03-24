@@ -1,0 +1,82 @@
+using System;
+
+class Account
+{
+    public int    AccNo   { get; set; }
+    public string Name    { get; set; }
+    public double Balance { get; protected set; }
+
+    public Account(int accNo, string name, double balance)
+    { AccNo = accNo; Name = name; Balance = balance; }
+
+    public virtual void Deposit(double amount)
+    {
+        if (amount <= 0) { Console.WriteLine("Deposit amount must be positive."); return; }
+        Balance += amount;
+        Console.WriteLine($"Deposited Rs.{amount}. New Balance: Rs.{Balance}");
+    }
+
+    public virtual void Withdraw(double amount)
+    {
+        if (amount <= 0)           { Console.WriteLine("Withdrawal amount must be positive."); return; }
+        if (amount > Balance)      { Console.WriteLine("Insufficient balance."); return; }
+        Balance -= amount;
+        Console.WriteLine($"Withdrawn Rs.{amount}. New Balance: Rs.{Balance}");
+    }
+
+    public void DisplayInfo() =>
+        Console.WriteLine($"Acc No: {AccNo} | Name: {Name} | Balance: Rs.{Balance}");
+}
+
+class SavingAccount : Account
+{
+    public double InterestRate { get; set; }  // in percentage
+
+    public SavingAccount(int accNo, string name, double balance, double rate)
+        : base(accNo, name, balance) { InterestRate = rate; }
+
+    public void CalculateInterest()
+    {
+        double interest = Balance * InterestRate / 100;
+        Console.WriteLine($"Interest @ {InterestRate}%: Rs.{interest} | " +
+                          $"Balance after interest: Rs.{Balance + interest}");
+    }
+}
+
+class CurrentAccount : Account
+{
+    public double OverdraftLimit { get; set; }
+
+    public CurrentAccount(int accNo, string name, double balance, double overdraft)
+        : base(accNo, name, balance) { OverdraftLimit = overdraft; }
+
+    public override void Withdraw(double amount)
+    {
+        if (amount <= 0) { Console.WriteLine("Amount must be positive."); return; }
+        if (amount > Balance + OverdraftLimit)
+        { Console.WriteLine($"Exceeds overdraft limit of Rs.{OverdraftLimit}."); return; }
+        Balance -= amount;
+        Console.WriteLine($"Withdrawn Rs.{amount}. New Balance: Rs.{Balance}");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("=== Saving Account ===");
+        SavingAccount sa = new SavingAccount(101, "Alice", 5000, 6);
+        sa.DisplayInfo();
+        sa.Deposit(2000);
+        sa.Withdraw(1000);
+        sa.CalculateInterest();
+
+        Console.WriteLine("\n=== Current Account ===");
+        CurrentAccount ca = new CurrentAccount(202, "Bob", 1000, 2000);
+        ca.DisplayInfo();
+        ca.Deposit(500);
+        ca.Withdraw(3000);   // uses overdraft
+        ca.Withdraw(5000);   // exceeds overdraft
+        ca.DisplayInfo();
+    }
+}
