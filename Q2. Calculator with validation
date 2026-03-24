@@ -1,0 +1,49 @@
+using System;
+
+class Calculator
+{
+    public double Add      (double a, double b) => a + b;
+    public double Subtract (double a, double b) => a - b;
+    public double Multiply (double a, double b) => a * b;
+
+    public double Divide(double a, double b)
+    {
+        if (b == 0) throw new DivideByZeroException("Error: Division by zero.");
+        return a / b;
+    }
+
+    public double Modulus(double a, double b)
+    {
+        if (b == 0) throw new DivideByZeroException("Error: Modulus by zero.");
+        return a % b;
+    }
+
+    public double SquareRoot(double a)
+    {
+        if (a < 0) throw new ArgumentException("Error: Cannot take square root of negative number.");
+        return Math.Sqrt(a);
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Calculator calc = new Calculator();
+        try
+        {
+            Console.Write("Enter first number  : "); double a = double.Parse(Console.ReadLine());
+            Console.Write("Enter second number : "); double b = double.Parse(Console.ReadLine());
+
+            Console.WriteLine($"\nAdd        : {calc.Add(a, b)}");
+            Console.WriteLine($"Subtract   : {calc.Subtract(a, b)}");
+            Console.WriteLine($"Multiply   : {calc.Multiply(a, b)}");
+            Console.WriteLine($"Divide     : {calc.Divide(a, b)}");
+            Console.WriteLine($"Modulus    : {calc.Modulus(a, b)}");
+            Console.WriteLine($"Sqrt of A  : {calc.SquareRoot(a)}");
+        }
+        catch (FormatException)           { Console.WriteLine("Invalid input. Please enter numbers only."); }
+        catch (DivideByZeroException ex)  { Console.WriteLine(ex.Message); }
+        catch (ArgumentException ex)      { Console.WriteLine(ex.Message); }
+    }
+}
