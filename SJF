@@ -1,0 +1,27 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        List<int> burst = new List<int>();
+
+        Console.Write("Enter number of processes: ");
+        int n = int.Parse(Console.ReadLine());
+
+        for (int i = 0; i < n; i++)
+        {
+            Console.Write("Enter burst time: ");
+            burst.Add(int.Parse(Console.ReadLine()));
+        }
+
+        burst.Sort(); // SJF
+
+        Console.WriteLine("Execution order:");
+        foreach (int b in burst)
+        {
+            Console.WriteLine(b);
+        }
+    }
+}
