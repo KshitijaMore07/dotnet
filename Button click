@@ -1,0 +1,24 @@
+private void btnRegister_Click(object sender, EventArgs e)
+{
+    if (txtName.Text == "" || txtAge.Text == "")
+    {
+        lblResult.Text = "Fill all details!";
+        return;
+    }
+
+    string gender = "";
+
+    if (rbMale.Checked)
+        gender = "Male";
+    else if (rbFemale.Checked)
+        gender = "Female";
+    else
+    {
+        lblResult.Text = "Select Gender!";
+        return;
+    }
+
+    string dept = cmbDept.Text;
+
+    lblResult.Text = "Registration Successful!";
+}
