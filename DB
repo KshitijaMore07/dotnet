@@ -1,0 +1,117 @@
+-- ============================================================
+--  Jatayu Airlines Management System
+--  Run this script in SQL Server Management Studio (SSMS)
+-- ============================================================
+
+-- 1. Create Database if not exists
+IF NOT EXISTS (SELECT name FROM sys.databases WHERE name = 'JatayuAirlinesDB')
+BEGIN
+    CREATE DATABASE JatayuAirlinesDB;
+    PRINT 'Database created.';
+END
+GO
+
+-- 2. Use Database
+USE JatayuAirlinesDB;
+GO
+
+-- 3. Create Flights Table
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Flights' AND xtype='U')
+BEGIN
+    CREATE TABLE Flights (
+        FlightID INT IDENTITY(1,1) PRIMARY KEY,
+        FlightNo VARCHAR(20) NOT NULL UNIQUE,
+        Origin VARCHAR(100) NOT NULL,
+        Destination VARCHAR(100) NOT NULL,
+        DepartureTime DATETIME NOT NULL,
+        ArrivalTime DATETIME NOT NULL,
+        TotalSeats INT NOT NULL,
+        AvailableSeats INT NOT NULL,
+        Price DECIMAL(10,2) NOT NULL,
+        Status VARCHAR(20) NOT NULL DEFAULT 'Scheduled'
+    );
+    PRINT 'Table Flights created.';
+END
+GO
+
+-- 4. Create Passengers Table
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Passengers' AND xtype='U')
+BEGIN
+    CREATE TABLE Passengers (
+        PassengerID INT IDENTITY(1,1) PRIMARY KEY,
+        FirstName VARCHAR(100) NOT NULL,
+        LastName VARCHAR(100) NOT NULL,
+        Email VARCHAR(150) NOT NULL UNIQUE,
+        Phone VARCHAR(15) NOT NULL,
+        PassportNo VARCHAR(20) NOT NULL UNIQUE,
+        DateOfBirth DATE NOT NULL,
+        Nationality VARCHAR(100) NOT NULL
+    );
+    PRINT 'Table Passengers created.';
+END
+GO
+
+-- 5. Create Bookings Table
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Bookings' AND xtype='U')
+BEGIN
+    CREATE TABLE Bookings (
+        BookingID INT IDENTITY(1,1) PRIMARY KEY,
+        BookingRef VARCHAR(20) NOT NULL UNIQUE,
+        PassengerID INT NOT NULL,
+        FlightID INT NOT NULL,
+        SeatNo VARCHAR(5) NOT NULL,
+        BookingDate DATETIME NOT NULL DEFAULT GETDATE(),
+        Status VARCHAR(20) NOT NULL DEFAULT 'Confirmed',
+        TotalFare DECIMAL(10,2) NOT NULL,
+
+        FOREIGN KEY (PassengerID) REFERENCES Passengers(PassengerID),
+        FOREIGN KEY (FlightID) REFERENCES Flights(FlightID)
+    );
+    PRINT 'Table Bookings created.';
+END
+GO
+
+-- 6. Insert Sample Flights Data
+IF NOT EXISTS (SELECT TOP 1 1 FROM Flights)
+BEGIN
+    INSERT INTO Flights 
+    (FlightNo, Origin, Destination, DepartureTime, ArrivalTime, TotalSeats, AvailableSeats, Price, Status)
+    VALUES
+    ('JT-101','Mumbai','Delhi','2026-04-15 08:00','2026-04-15 10:30',180,180,5500,'Scheduled'),
+    ('JT-102','Pune','Bangalore','2026-04-16 09:00','2026-04-16 11:00',150,150,4500,'Scheduled'),
+    ('JT-103','Delhi','Chennai','2026-04-17 06:00','2026-04-17 09:30',200,200,6000,'Scheduled');
+    
+    PRINT 'Sample flights inserted.';
+END
+GO
+
+-- 7. Create Users Table (for login system)
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Users' AND xtype='U')
+BEGIN
+    CREATE TABLE Users (
+        UserID INT IDENTITY(1,1) PRIMARY KEY,
+        Username VARCHAR(50) NOT NULL UNIQUE,
+        Password VARCHAR(100) NOT NULL,
+        FullName VARCHAR(150) NOT NULL,
+        Role VARCHAR(10) NOT NULL CHECK (Role IN ('Admin','User')),
+        IsActive BIT NOT NULL DEFAULT 1
+    );
+    PRINT 'Table Users created.';
+END
+GO
+
+-- 8. Insert Default Users
+IF NOT EXISTS (SELECT TOP 1 1 FROM Users)
+BEGIN
+    INSERT INTO Users (Username, Password, FullName, Role, IsActive)
+    VALUES
+    ('admin','Admin@123','System Administrator','Admin',1),
+    ('user1','User@123','Test User','User',1);
+
+    PRINT 'Default users inserted.';
+END
+GO
+
+-- 9. Final Message
+PRINT 'Jatayu Airlines Database is Ready!';
+GO
