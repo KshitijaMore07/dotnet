@@ -1,0 +1,13 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Random rand = new Random();
+        
+        int number = rand.Next(1, 101); // 1 to 100
+        
+        Console.WriteLine("Random Number: " + number);
+    }
+}
