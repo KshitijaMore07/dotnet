@@ -1,0 +1,5 @@
+class Student
+{
+    public string name;
+}
+Student s1 = new Student();
