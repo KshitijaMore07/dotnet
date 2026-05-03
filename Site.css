@@ -1,0 +1,28 @@
+body {
+    font-family: Arial;
+    margin: 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    background: black;
+    color: white;
+    padding: 15px;
+}
+
+.navbar ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.container {
+    padding: 40px;
+}
+
+.project {
+    background: #f4f4f4;
+    margin: 10px;
+    padding: 15px;
+}
